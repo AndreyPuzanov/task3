@@ -17,18 +17,25 @@ class Router
             require_once ROOT.'/view/form.php';
         } elseif ($this->uri == 'add-user'){
             require_once 'view/user.php';
+            $newUser = new User();
+            $user = $newUser->create($_POST['name'], $_POST['email']);
         } elseif ($this->uri == 'add-category'){
+            $newCategory = new Category();
+            $category = $newCategory->create($_POST['category']);
             require_once 'view/category.php';
         } elseif ($this->uri == 'posts'){
             $post = new Post();
             $data = $post->getAllPosts();
             require_once 'view/posts.php';
         } elseif ($this->uri == 'add-post'){
+            $newPost = new Post();
+            $post = $newPost->create($_POST['user_id'], $_POST['content'], $_POST['category_id']);
             require_once 'view/add_post.php';
-        } elseif (preg_match('[\d+]', $this->uri)){
+        } elseif (preg_match('{\d}', $this->uri)){
             $post = new Post();
-            $data = $post->getPostById($this->uri);
-            require_once 'view/post.php';
+            $postId = explode('/',$this->uri);
+            $data = $post->getPostById($postId[1]);
+            require_once 'view/view-post.php';
         }
     }
 }

@@ -1,32 +1,22 @@
 <?php 
 
-class User 
+class User extends ModelUser
 {
-    private $db;
-
-    public function __construct()
+    public function create($userName , $email)
     {
-        $this->db = Db::getConnection();
+        $sql = 'INSERT INTO User(user_name, email,status) VALUES (:user_name, :email, 1)';
+        $params = [
+            'user_name' => $userName,
+            'email' => $email,
+        ];
+        
+		return $this->save($sql, $params);
     }
 
-    public function getId($userName)
+    public function getUsers()
     {
-        $sql = 'SELECT id FROM User WHERE user_name = :name';
-        $result = $this->db->prepare($sql);
-        $result->bindParam(':name', $userName);
-        $result->execute();
+        $sql = 'SELECT * FROM user';
 
-		return $result->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function add($userName, $userEmail)
-    {
-        $sql = 'INSERT INTO User(name, email, status) VALUES (:userName, :userEmail , 1)';
-        $result = $this->db->prepare($sql);
-        $result->bindParam(':userName', $userName);
-        $result->bindParam(':userEmail',  $userEmail);
-        $result->execute();
-
-		return $result;
+        return $this->load($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 }

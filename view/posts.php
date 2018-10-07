@@ -8,7 +8,8 @@
 </head>
 <body>
     <?php foreach($data as $key => $value): ?>
-        <a href="/<?php echo $key+1; ?>"> post <?php echo $key+1; ?></a>
+        <?php $key++ ;?>
+        <a href="<?php echo 'post/'.$key; ?>"> post <?php echo $key; ?></a>
         <p>Category : <?php echo $value['cat_name']; ?></p>
         <p>User name : <?php echo $value['user_name']; ?></p>
         <p>Content : <?php echo $value['content']; ?></p>

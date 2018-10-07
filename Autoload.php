@@ -10,7 +10,7 @@ spl_autoload_register( function($class_name){
         case 'Model' :
         case 'ModelUser' :
         case 'ModelPost' :
-        case 'ModelCategory' :
+        case 'ModelСategory' :
         case 'Category' :
         case 'Post' :
         case 'User' :

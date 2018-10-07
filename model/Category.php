@@ -1,30 +1,21 @@
 <?php 
 
-class Category
+class Category extends ModelСategory
 {
-    private $db;
-
-    public function __construct()
+    public function create($categoryName)
     {
-        $this->db = Db::getConnection();
+        $sql = 'INSERT INTO Category(cat_name, status) VALUES (:cat_name, 1)';
+        $params = [
+            'cat_name' => $categoryName,
+        ];
+        
+		return $this->save($sql, $params);
     }
 
-    public function getId($categoryName)
+    public function getCategories()
     {
-        $result = $this->db->prepare("SELECT id FROM Category WHERE cat_name = :name");
-        $result->bindParam(':name', $categoryName);
-        $result->execute();
+        $sql = 'SELECT * FROM Category';
 
-		return $result->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function add($categoryName)
-    {
-        $sql = 'INSERT INTO Category(name, status) VALUES (:name, 1)';
-        $result = $this->db->prepare($sql);
-        $result->bindParam(':name', $categoryName);
-        $result->execute();
-
-		return $result;
+        return $this->load($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 }

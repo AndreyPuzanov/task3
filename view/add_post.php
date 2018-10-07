@@ -18,21 +18,21 @@ $res = $db->query('SELECT * FROM Category')->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <form action="/add-post" method="POST">
         <p>User :</p>
-        <select name="name" required>
+        <select name="user_id" required>
             <option disabled>Выберете пользователя</option>
             <?php foreach ($result as $key => $value): ?>
-                <option value="<?php echo $value['name'];?>">
-                    <?php echo $value['name'];?>
+                <option value="<?php echo $value['id'];?>">
+                    <?php echo $value['user_name'];?>
                 </option>
             <?php endforeach; ?>
         </select>
         <br>
         <p>Category :</p>
-        <select name="category" required>
+        <select name="category_id" required>
             <option disabled>Выберете категорию</option>
             <?php foreach ($res as $key => $value): ?>
-                <option value="<?php echo $value['name'];?>">
-                    <?php echo $value['name'];?>
+                <option value="<?php echo $value['id'];?>">
+                    <?php echo $value['cat_name'];?>
                 </option>
             <?php endforeach; ?>
         </select>

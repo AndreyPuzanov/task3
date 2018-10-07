@@ -21,11 +21,29 @@ class Post extends ModelPost
 		return $result->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getAllPosts(){
+    public function getAllPosts()
+    {
         $sql = 'SELECT * FROM Post 
                 INNER JOIN User on Post.user_id = User.id 
                 INNER JOIN Category on Post.category_id = Category.id';
 
         return $this->load($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function create($user_id, $content, $category_id)
+    {
+        $date = date("Y-m-d H:i:s");
+        $sql = 'INSERT INTO Post(user_id, content, status, created_at, category_id) 
+                VALUES (:user_id, :content, 1, :date, :category_id)';
+
+        $params = [
+            'user_id' => $user_id,
+            'content' => $content,
+            'category_id' => $category_id,
+            'date' => $date,
+        ];
+
+        $result = $this->save($sql, $params);
+		return $result;
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
-abstract class ModelUser implements Model
+abstract class ModelСategory implements Model
 {
+    protected $data = [];
+    protected $isNew = false;
     public $db;
 
     public function __construct()
@@ -37,7 +39,7 @@ abstract class ModelUser implements Model
 
     public function validate($params = [])
     {
-        $sql = 'SELECT * FROM user WHERE user_name = :user_name AND email = :email';
+        $sql = 'SELECT * FROM Category WHERE cat_name = :cat_name';
         $res = $this->db->prepare($sql);
 		if (!empty($params)) {
 			foreach ($params as $key => $val) {
