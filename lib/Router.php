@@ -28,9 +28,9 @@ class Router
             $data = $post->getAllPosts();
             require_once 'view/posts.php';
         } elseif ($this->uri == 'add-post'){
+            require_once 'view/add_post.php';
             $newPost = new Post();
             $post = $newPost->create($_POST['user_id'], $_POST['content'], $_POST['category_id']);
-            require_once 'view/add_post.php';
         } elseif (preg_match('{\d}', $this->uri)){
             $post = new Post();
             $postId = explode('/',$this->uri);

@@ -1,6 +1,6 @@
 <?php
 
-class Post extends ModelPost
+class Post extends ActiveRecord
 {
     public function __construct()
     {
@@ -34,16 +34,18 @@ class Post extends ModelPost
     {
         $date = date("Y-m-d H:i:s");
         $sql = 'INSERT INTO Post(user_id, content, status, created_at, category_id) 
-                VALUES (:user_id, :content, 1, :date, :category_id)';
+                VALUES (:user_id, :content, 1, NOW(), :category_id)';
 
         $params = [
             'user_id' => $user_id,
             'content' => $content,
             'category_id' => $category_id,
-            'date' => $date,
         ];
 
-        $result = $this->save($sql, $params);
+        if($this->validate('SELECT * FROM Post WHERE user_id = :user_id AND content = :content AND category_id = :category_id', $params))
+        {
+            $result = $this->save($sql, $params);
+        }
 		return $result;
     }
 }

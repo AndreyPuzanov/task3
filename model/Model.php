@@ -6,5 +6,5 @@ interface Model
 
     public function save($sql, $params = []);
 
-    public function validate();
+    // public function validate();
 }

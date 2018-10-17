@@ -1,6 +1,6 @@
 <?php 
 
-class User extends ModelUser
+class User extends ActiveRecord
 {
     public function create($userName , $email)
     {
@@ -9,8 +9,10 @@ class User extends ModelUser
             'user_name' => $userName,
             'email' => $email,
         ];
-        
-		return $this->save($sql, $params);
+
+        if($this->validate('SELECT * FROM user WHERE user_name = :user_name AND email = :email', $params)){
+            return $this->save($sql, $params, $table);
+        }
     }
 
     public function getUsers()

@@ -7,10 +7,8 @@ spl_autoload_register( function($class_name){
             require_once 'lib/' . $class_name . '.php';
             break;
 
+        case 'ActiveRecord' :
         case 'Model' :
-        case 'ModelUser' :
-        case 'ModelPost' :
-        case 'ModelСategory' :
         case 'Category' :
         case 'Post' :
         case 'User' :
