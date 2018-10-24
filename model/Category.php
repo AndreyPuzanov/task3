@@ -1,6 +1,6 @@
 <?php 
 
-class Category extends ModelСategory
+class Category extends ActiveRecord
 {
     public function create($categoryName)
     {
