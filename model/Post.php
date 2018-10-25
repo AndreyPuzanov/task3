@@ -29,7 +29,7 @@ class Post extends ActiveRecord
         $params = [
             'post_id' => $post_id,
         ];
-
+        
         $result = $this->load($sql, $params);
         return $result->fetch(PDO::FETCH_ASSOC);
         
@@ -55,7 +55,7 @@ class Post extends ActiveRecord
         ];
 
         $sql = $this->genterate('INSERT',$this->table,$this->map,$params);
-        if($this->validate('SELECT * FROM Post WHERE user_id = :user_id AND content = :content AND status = :status AND category_id = :category_id', $params))
+        if($this->validate($this->genterate('SELECT',$this->table,$this->map,$params), $params))
         {
             $result = $this->save($sql, $params);
         }
