@@ -10,7 +10,7 @@ class User extends ActiveRecord
         'status',
     ];
 
-    public function create($userName , $email)
+    public function setData($userName , $email)
     {
         $params = [
             'user_name' => $userName,

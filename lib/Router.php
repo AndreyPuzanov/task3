@@ -18,10 +18,10 @@ class Router
         } elseif ($this->uri == 'add-user'){
             require_once 'view/User/user.php';
             $newUser = new User();
-            $user = $newUser->create($_POST['name'], $_POST['email']);
+            $user = $newUser->setData($_POST['name'], $_POST['email']);
         } elseif ($this->uri == 'add-category'){
             $newCategory = new Category();
-            $category = $newCategory->create($_POST['category']);
+            $category = $newCategory->setData($_POST['category']);
             require_once 'view/Category/category.php';
         } elseif ($this->uri == 'posts'){
             $post = new Post();
@@ -30,11 +30,11 @@ class Router
         } elseif ($this->uri == 'add-post'){
             require_once 'view/Post/add_post.php';
             $newPost = new Post();
-            $post = $newPost->create($_POST['user_id'], $_POST['content'], $_POST['category_id']);
+            $post = $newPost->setData($_POST['user_id'], $_POST['content'], $_POST['category_id']);
         } elseif (preg_match('{\d}', $this->uri)){
             $post = new Post();
             $postId = explode('/',$this->uri);
-            $data = $post->getPostById($postId[1]);
+            $data = $post->getDataById($postId[1]);
             require_once 'view/Post/view-post.php';
         }
     }

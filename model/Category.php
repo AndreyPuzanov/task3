@@ -9,7 +9,7 @@ class Category extends ActiveRecord
         'status',
     ];
 
-    public function create($categoryName)
+    public function setData($categoryName)
     {
         $params = [
             'cat_name' => $categoryName,

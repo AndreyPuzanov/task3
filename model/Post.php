@@ -20,7 +20,7 @@ class Post extends ActiveRecord
     }
 
 
-    public function getPostById(int $post_id)
+    public function getDataById(int $post_id)
     {
         $sql = 'SELECT * FROM Post 
                 INNER JOIN User on Post.user_id = User.id 
@@ -36,7 +36,7 @@ class Post extends ActiveRecord
         
     }
 
-    public function getAllPosts()
+    public function getData()
     {
         $sql = 'SELECT * FROM Post 
                 INNER JOIN User on Post.user_id = User.id 
@@ -45,7 +45,7 @@ class Post extends ActiveRecord
         return $this->load($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function create($user_id, $content, $category_id)
+    public function setData($user_id, $content, $category_id)
     {
         $params = [
             'user_id' => $user_id,
