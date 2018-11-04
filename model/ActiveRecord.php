@@ -45,7 +45,7 @@ abstract class ActiveRecord implements Model
 		return $res;
     }
 
-    public function genterate($type ,$table ,$map, $params = [])
+    public function generate($type ,$table ,$map, $params = [])
     {
         if($type == 'SELECT'){
             if(!empty($params)){

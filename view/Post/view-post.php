@@ -7,9 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Category : <?php echo $data['cat_name']; ?></p>
-    <p>User name : <?php echo $data['user_name']; ?></p>
-    <p>Content : <?php echo $data['content']; ?></p>
-    <p>Created at : <?php echo $data['created_at']; ?></p>
+    <?php foreach($post->getCategory($post->getData('category_id')) as $val): ?>
+        <p>Category : <?php echo $val['cat_name']; ?></p>
+    <?php endforeach; ?>
+
+    <?php foreach($post->getUser($post->getData('user_id')) as $val): ?>
+        <p>User-name: <?php echo $val['user_name']; ?></p>
+        <p>User-email : <?php echo $val['email']; ?></p>
+    <?php endforeach; ?>
+
+    <p>Content : <?php echo $post->getData('content'); ?></p>
+    <p>Created at : <?php echo $post->getData('created_at'); ?></p>
 </body>
 </html>
