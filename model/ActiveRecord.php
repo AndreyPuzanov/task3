@@ -45,11 +45,14 @@ abstract class ActiveRecord implements Model
 		return $res;
     }
 
+<<<<<<< HEAD
     public function number()
     {
         return count($this->load($this->generate('SELECT', $this->table, $this->map))->fetchAll(PDO::FETCH_ASSOC));
     }
 
+=======
+>>>>>>> 753394e06add5683bd7542ade1350d28e6511275
     public function generate($type ,$table ,$map, $params = [])
     {
         if($type == 'SELECT'){

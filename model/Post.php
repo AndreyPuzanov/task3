@@ -52,8 +52,13 @@ class Post extends ActiveRecord
         ];
 
         $sql = $this->generate('INSERT',$this->table,$this->map,$params);
+<<<<<<< HEAD
 
         if($this->validate($this->generate('SELECT',$this->table,$this->map,$params), $params)) {
+=======
+        if($this->validate($this->generate('SELECT',$this->table,$this->map,$params), $params))
+        {
+>>>>>>> 753394e06add5683bd7542ade1350d28e6511275
             $result = $this->save($sql, $params);
         }
 
@@ -72,5 +77,36 @@ class Post extends ActiveRecord
         $category = new Category();
         $category->_load($this->getData('category_id'));
         return $category;
+    }
+
+    public function getUser(int $id)
+    {
+        $this->table = 'User';
+        $this->map = [
+            'id',
+            'user_name',
+            'email',
+            'status',
+        ];
+
+        $params = [
+            'id' => $id,
+        ];
+        return $this->load($this->generate('SELECT', $this->table, $this->map, $params))->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getCategory(int $id)
+    {
+        $this->table = 'Category';
+        $this->map =  [
+            'id',
+            'cat_name',
+            'status',
+        ];
+
+        $params = [
+            'id' => $id,
+        ];
+        return $this->load($this->generate('SELECT', $this->table, $this->map, $params))->fetchAll(PDO::FETCH_ASSOC);
     }
 }
