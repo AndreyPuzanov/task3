@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-<<<<<<< HEAD
+
     <p>User :
         <?php
             $user = $post->getUser();
@@ -20,17 +20,7 @@
             echo $category->getData('cat_name');
         ?>
     </p>
-=======
-    <?php foreach($post->getCategory($post->getData('category_id')) as $val): ?>
-        <p>Category : <?php echo $val['cat_name']; ?></p>
-    <?php endforeach; ?>
 
-    <?php foreach($post->getUser($post->getData('user_id')) as $val): ?>
-        <p>User-name: <?php echo $val['user_name']; ?></p>
-        <p>User-email : <?php echo $val['email']; ?></p>
-    <?php endforeach; ?>
-
->>>>>>> 753394e06add5683bd7542ade1350d28e6511275
     <p>Content : <?php echo $post->getData('content'); ?></p>
     <p>Created at : <?php echo $post->getData('created_at'); ?></p>
 </body>

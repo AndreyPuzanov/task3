@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5576f898-a0d1-4011-9761-58440fd6b30a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/db.php" afterPath="$PROJECT_DIR$/config/db.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/Router.php" afterPath="$PROJECT_DIR$/lib/Router.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ActiveRecord.php" afterPath="$PROJECT_DIR$/model/ActiveRecord.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/Category.php" afterPath="$PROJECT_DIR$/model/Category.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/Post.php" afterPath="$PROJECT_DIR$/model/Post.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/User.php" afterPath="$PROJECT_DIR$/model/User.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/Post/posts.php" afterPath="$PROJECT_DIR$/view/Post/posts.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/Post/view-post.php" afterPath="$PROJECT_DIR$/view/Post/view-post.php" />
     </list>
@@ -69,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Post.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Post.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/Post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+            <state relative-caret-position="219">
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -82,18 +77,18 @@
       <file leaf-file-name="posts.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/Post/posts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="34" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="34" />
+            <state relative-caret-position="126">
+              <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActiveRecord.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ActiveRecord.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/ActiveRecord.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            <state relative-caret-position="831">
+              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -112,8 +107,8 @@
       <file leaf-file-name="view-post.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/Post/view-post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="48" selection-start-line="17" selection-start-column="12" selection-end-line="18" selection-end-column="48" />
+            <state relative-caret-position="162">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -133,9 +128,9 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/model/User.php" />
         <option value="$PROJECT_DIR$/lib/Router.php" />
+        <option value="$PROJECT_DIR$/model/ActiveRecord.php" />
         <option value="$PROJECT_DIR$/view/Post/view-post.php" />
         <option value="$PROJECT_DIR$/model/Post.php" />
-        <option value="$PROJECT_DIR$/model/ActiveRecord.php" />
         <option value="$PROJECT_DIR$/view/Post/posts.php" />
       </list>
     </option>
@@ -236,12 +231,12 @@
       <workItem from="1541155167576" duration="6426000" />
       <workItem from="1541162429151" duration="9000" />
       <workItem from="1541491967717" duration="673000" />
-      <workItem from="1541492656621" duration="16416000" />
+      <workItem from="1541492656621" duration="17288000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23524000" />
+    <option name="totallyTimeSpent" value="24396000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -578,8 +573,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/view/Post/view-post.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="48" selection-start-line="17" selection-start-column="12" selection-end-line="18" selection-end-column="48" />
+        <state relative-caret-position="162">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ActiveRecord.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="831">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/Post/posts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -592,26 +603,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/Post/posts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="34" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/Post.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/ActiveRecord.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+        <state relative-caret-position="219">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding />
         </state>
       </provider>
