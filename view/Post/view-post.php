@@ -7,9 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Category : <?php echo $data['cat_name']; ?></p>
-    <p>User name : <?php echo $data['user_name']; ?></p>
-    <p>Content : <?php echo $data['content']; ?></p>
-    <p>Created at : <?php echo $data['created_at']; ?></p>
+    <p>User :
+        <?php
+            $user = $post->getUser();
+            echo $user->getData('user_name');
+        ?>
+    </p>
+    <p>Category :
+        <?php
+            $category = $post->getCategory();
+            echo $category->getData('cat_name');
+        ?>
+    </p>
+    <p>Content : <?php echo $post->getData('content'); ?></p>
+    <p>Created at : <?php echo $post->getData('created_at'); ?></p>
 </body>
 </html>

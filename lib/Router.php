@@ -3,16 +3,13 @@
 class Router
 {
     private $uri;
-
     private function getURI()
     {
         return trim($_SERVER['REQUEST_URI'], '/');
     }
-
     public function run()
     {
         $this->uri = $this->getURI();
-
         if($this->uri == ''){
             require_once ROOT.'/view/default.php';
         } elseif ($this->uri == 'add-user'){
@@ -25,7 +22,7 @@ class Router
             require_once 'view/Category/category.php';
         } elseif ($this->uri == 'posts'){
             $post = new Post();
-            $data = $post->getAllPosts();
+            $post->_load();
             require_once 'view/Post/posts.php';
         } elseif ($this->uri == 'add-post'){
             require_once 'view/Post/add_post.php';
@@ -34,7 +31,7 @@ class Router
         } elseif (preg_match('{\d}', $this->uri)){
             $post = new Post();
             $postId = explode('/',$this->uri);
-            $data = $post->getDataById($postId[1]);
+            $post->_load($postId[1]);
             require_once 'view/Post/view-post.php';
         }
     }

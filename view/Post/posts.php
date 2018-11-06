@@ -7,14 +7,24 @@
     <title>Document</title>
 </head>
 <body>
-    <?php foreach($data as $key => $value): ?>
-        <?php $key++ ;?>
-        <a href="<?php echo 'post/'.$key; ?>"> post <?php echo $key; ?></a>
-        <p>Category : <?php echo $value['cat_name']; ?></p>
-        <p>User name : <?php echo $value['user_name']; ?></p>
-        <p>Content : <?php echo $value['content']; ?></p>
-        <p>Created at : <?php echo $value['created_at']; ?></p>
+    <?php for ($i = 1; $i <= $post->number();$i++): ?>
+        <?php $post->_load($i); ?>
+        <a href="post/<?php echo $post->getData('id')?>"><?php echo $post->getData('id')?></a>
+        <p>User :
+            <?php
+                $user = $post->getUser();
+                echo $user->getData('user_name');
+            ?>
+        </p>
+        <p>Category :
+            <?php
+                $category = $post->getCategory();
+                echo $category->getData('cat_name');
+            ?>
+        </p>
+        <p>Content : <?php echo $post->getData('content')?></p>
+        <p>Created at : <?php echo $post->getData('created_at')?></p>
         <hr>
-    <?php endforeach; ?>
+    <?php endfor; ?>
 </body>
 </html>
