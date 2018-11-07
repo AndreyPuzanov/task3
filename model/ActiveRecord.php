@@ -30,17 +30,17 @@ abstract class ActiveRecord implements Model
         return $stmt;
     }
 
+//    public static function getAll()
+//    {
+//        $this->data = $this->query($this->generate('SELECT', $this->getTable(), $this->getColumns($this->getTable())));
+//    }
 
-    public function load(int $id = 0)
+    public function load(int $id)
     {
-        if($id == 0){
-            $this->data = $this->query($this->generate('SELECT', $this->table, $this->map))->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            $params = [
-                'id' => $id,
-            ];
-            $this->data = $this->query($this->generate('SELECT', $this->table, $this->map, $params))->fetchAll(PDO::FETCH_ASSOC);
-        }
+        $params = [
+            'id' => $id,
+        ];
+        $this->data = $this->query($this->generate('SELECT', $this->getTable(), $this->getColumns($this->getTable()), $params))->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function save($sql, $params = [])
@@ -50,6 +50,8 @@ abstract class ActiveRecord implements Model
             foreach ($params as $key => $val) {
                 $stmt->bindValue(':'.$key, $val);
             }
+        }else {
+            throw new Exception('gde dannie ???');
         }
         $stmt->execute();
         return $stmt;
@@ -73,7 +75,7 @@ abstract class ActiveRecord implements Model
 
     public function number()
     {
-        return count($this->query($this->generate('SELECT', $this->table, $this->map))->fetchAll(PDO::FETCH_ASSOC));
+        return $this->query('SELECT COUNT(*) FROM ' . $this->getTable())->fetch(PDO::FETCH_NUM);
     }
 
     public function generate($type ,$table ,$map, $params = [])
@@ -100,8 +102,6 @@ abstract class ActiveRecord implements Model
                 }
                 $sql = trim($sql, ',');
                 $sql .= ' FROM ' . $table;
-                // $resul = $this->load($res)->fetchAll(PDO::FETCH_ASSOC);
-                // var_dump($resul);
             }
         } elseif ($type == 'DELETE'){
             $sql = $type;

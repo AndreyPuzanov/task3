@@ -9,8 +9,6 @@ class Post extends ActiveRecord
     public function __construct()
     {
         $this->db = Db::getConnection();
-        $this->table = $this->getTable();
-        $this->map = $this->getColumns($this->table);
     }
 
     public function getData(string $key = '')
@@ -33,9 +31,9 @@ class Post extends ActiveRecord
             'category_id' => $category_id,
         ];
 
-        $sql = $this->generate('INSERT',$this->table,$this->map,$params);
+        $sql = $this->generate('INSERT', $this->getTable(), $this->getColumns($this->getTable()), $params);
 
-        if($this->validate($this->generate('SELECT',$this->table,$this->map,$params), $params))
+        if($this->validate($this->generate('SELECT', $this->getTable(), $this->getColumns($this->getTable())), $params))
         {
             $result = $this->save($sql, $params);
             return $result;
