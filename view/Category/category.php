@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="/">back</a>
+    <hr>
     <form action="/add-category" method="POST">
         <input type="text" name="category" placeholder="category name" required>
         <input type="submit" name="btn-category" value="Submit">  

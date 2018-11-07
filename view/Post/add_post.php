@@ -16,6 +16,8 @@ $res = $db->query('SELECT * FROM Category')->fetchAll(PDO::FETCH_ASSOC);
     <title>Document</title>
 </head>
 <body>
+    <a href="/">back</a>
+    <hr>
     <form action="/add-post" method="POST">
         <p>User :</p>
         <select name="user_id" required>

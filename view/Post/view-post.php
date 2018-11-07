@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-
+    <a href="/posts">back</a>
     <p>User :
         <?php
             $user = $post->getUser();

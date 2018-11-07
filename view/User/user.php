@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="/">back</a>
+    <hr>
     <form action="/add-user" method="POST">
         <input type="text" name="name" placeholder="input user name" required>
         <input type="email" name="email" placeholder="input user email" required>

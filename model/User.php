@@ -1,28 +1,18 @@
 <?php 
 
 class User extends ActiveRecord
-{   
-    protected $table = 'User';
+{
+    protected $table;
     public $data = [];
-    protected $map = [
-        'id',
-        'user_name',
-        'email',
-        'status',
-    ];
+    protected $map;
 
-    public function _load(int $id = 0)
+    public function __construct()
     {
-        if($id == 0){
-            $this->data = $this->load($this->generate('SELECT', $this->table, $this->map))->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            $params = [
-                'id' => $id,
-            ];
-            $this->data = $this->load($this->generate('SELECT', $this->table, $this->map, $params))->fetchAll(PDO::FETCH_ASSOC);
-        }
+        $this->db = Db::getConnection();
+        $this->table = $this->getTable();
+        $this->map = $this->getColumns($this->table);
     }
-
+    
     public function setData($userName , $email)
     {
         $params = [

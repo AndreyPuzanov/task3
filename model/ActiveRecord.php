@@ -4,21 +4,43 @@ abstract class ActiveRecord implements Model
 {
     public $db;
 
-    public function __construct()
+    public function getTable()
     {
-        $this->db = Db::getConnection();
+        return get_class($this);
     }
 
-    public function load($sql, $params = [])
+    public function getColumns($table)
+    {
+        $data = $this->query('SHOW COLUMNS FROM '.$table)->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($data as $key => $value) {
+            $column[] = $value['Field'];
+        }
+        return $column;
+    }
+
+    public function query($sql, $params = [])
     {
         $stmt = $this->db->prepare($sql);
-		if (!empty($params)) {
-			foreach ($params as $key => $val) {
-				$stmt->bindValue(':'.$key, $val);
+        if (!empty($params)) {
+            foreach ($params as $key => $val) {
+                $stmt->bindValue(':'.$key, $val);
             }
         }
-		$stmt->execute();
-		return $stmt;
+        $stmt->execute();
+        return $stmt;
+    }
+
+
+    public function load(int $id = 0)
+    {
+        if($id == 0){
+            $this->data = $this->query($this->generate('SELECT', $this->table, $this->map))->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            $params = [
+                'id' => $id,
+            ];
+            $this->data = $this->query($this->generate('SELECT', $this->table, $this->map, $params))->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 
     public function save($sql, $params = [])
@@ -41,14 +63,17 @@ abstract class ActiveRecord implements Model
 				$res->bindValue(':'.$key, $val);
             }
         }
-		$res->execute();
-		return $res;
+        if($res->execute()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
     public function number()
     {
-        return count($this->load($this->generate('SELECT', $this->table, $this->map))->fetchAll(PDO::FETCH_ASSOC));
+        return count($this->query($this->generate('SELECT', $this->table, $this->map))->fetchAll(PDO::FETCH_ASSOC));
     }
 
     public function generate($type ,$table ,$map, $params = [])

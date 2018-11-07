@@ -2,9 +2,9 @@
 
 interface Model 
 {
-    public function load($sql, $params = []);
+    public function load(int $id);
 
     public function save($sql, $params = []);
-
+    
     // public function validate();
 }

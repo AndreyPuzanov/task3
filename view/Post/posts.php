@@ -7,9 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-
+    <a href="/">back</a>
+    <hr>
     <?php for ($i = 1; $i <= $post->number();$i++): ?>
-        <?php $post->_load($i); ?>
+        <?php $post->load($i); ?>
         <a href="post/<?php echo $post->getData('id')?>"><?php echo $post->getData('id')?></a>
         <p>User :
             <?php

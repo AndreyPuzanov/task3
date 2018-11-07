@@ -2,33 +2,15 @@
 
 class Post extends ActiveRecord
 {
-    protected $table = 'Post';
+    protected $table;
     public $data = [];
-    protected $map = [
-        'id',
-        'user_id' ,
-        'content' ,
-        'status' ,
-        'created_at' ,
-        'update_at' ,
-        'category_id' ,
-        ];
+    protected $map;
 
     public function __construct()
     {
         $this->db = Db::getConnection();
-    }
-
-    public function _load(int $id = 0)
-    {
-        if($id == 0){
-            $this->data = $this->load($this->generate('SELECT', $this->table, $this->map))->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            $params = [
-                'id' => $id,
-            ];
-            $this->data = $this->load($this->generate('SELECT', $this->table, $this->map, $params))->fetchAll(PDO::FETCH_ASSOC);
-        }
+        $this->table = $this->getTable();
+        $this->map = $this->getColumns($this->table);
     }
 
     public function getData(string $key = '')
@@ -56,22 +38,25 @@ class Post extends ActiveRecord
         if($this->validate($this->generate('SELECT',$this->table,$this->map,$params), $params))
         {
             $result = $this->save($sql, $params);
+            return $result;
+        } else {
+            return false;
         }
 
-        return $result;
+
     }
 
     public function getUser()
     {
         $user = new User();
-        $user->_load($this->getData('user_id'));
+        $user->load($this->getData('user_id'));
         return $user;
     }
 
     public function getCategory()
     {
         $category = new Category();
-        $category->_load($this->getData('category_id'));
+        $category->load($this->getData('category_id'));
         return $category;
     }
 }

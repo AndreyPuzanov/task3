@@ -2,13 +2,16 @@
 
 class Category extends ActiveRecord
 {
-    protected $table = 'Category';
+    protected $table;
     public $data = [];
-    protected $map = [
-        'id',
-        'cat_name',
-        'status',
-    ];
+    protected $map;
+
+    public function __construct()
+    {
+        $this->db = Db::getConnection();
+        $this->table = $this->getTable();
+        $this->map = $this->getColumns($this->table);
+    }
 
     public function setData($categoryName)
     {
@@ -16,26 +19,8 @@ class Category extends ActiveRecord
             'cat_name' => $categoryName,
             'status' => 0,
         ];
-        $sql = $this->genterate('INSERT',$this->table,$this->map,$params);
+        $sql = $this->generate('INSERT',$this->table,$this->map,$params);
 		return $this->save($sql, $params);
-    }
-
-    public function getCategories()
-    {
-        $sql = $this->genterate('SELECT',$this->table,$this->map);
-        return $this->load($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function _load(int $id = 0)
-    {
-        if($id == 0){
-            $this->data = $this->load($this->generate('SELECT', $this->table, $this->map))->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            $params = [
-                'id' => $id,
-            ];
-            $this->data = $this->load($this->generate('SELECT', $this->table, $this->map, $params))->fetchAll(PDO::FETCH_ASSOC);
-        }
     }
 
     public function getData(string $key = '')
