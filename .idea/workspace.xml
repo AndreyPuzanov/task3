@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5576f898-a0d1-4011-9761-58440fd6b30a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ActiveRecord.php" afterPath="$PROJECT_DIR$/model/ActiveRecord.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/Post.php" afterPath="$PROJECT_DIR$/model/Post.php" />
-    </list>
+    <list default="true" id="5576f898-a0d1-4011-9761-58440fd6b30a" name="Default" comment="" />
     <ignored path="task3.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -309,12 +306,12 @@
       <workItem from="1541162429151" duration="9000" />
       <workItem from="1541491967717" duration="673000" />
       <workItem from="1541492656621" duration="18822000" />
-      <workItem from="1541579856473" duration="13462000" />
+      <workItem from="1541579856473" duration="13796000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39392000" />
+    <option name="totallyTimeSpent" value="39726000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
