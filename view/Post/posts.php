@@ -9,25 +9,13 @@
 <body>
     <a href="/">back</a>
     <hr>
-    <?php for ($i = 1; $i <= $post->number();$i++): ?>
-        <?php $post->load($i); ?>
+    <?php foreach ($posts as $post): ?>
         <a href="post/<?php echo $post->getData('id')?>"><?php echo $post->getData('id')?></a>
-        <p>User :
-            <?php
-                $user = $post->getUser();
-                echo $user->getData('user_name');
-            ?>
-        </p>
-        <p>Category :
-            <?php
-                $category = $post->getCategory();
-                echo $category->getData('cat_name');
-            ?>
-        </p>
+        <p>User : <?php echo $post->getUser()->getData('user_name'); ?></p>
+        <p>Category : <?php echo $post->getCategory()->getData('cat_name'); ?></p>
         <p>Content : <?php echo $post->getData('content')?></p>
         <p>Created at : <?php echo $post->getData('created_at')?></p>
-
         <hr>
-    <?php endfor; ?>
+    <?php endforeach; ?>
 </body>
 </html>

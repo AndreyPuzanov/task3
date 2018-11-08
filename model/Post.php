@@ -2,24 +2,31 @@
 
 class Post extends ActiveRecord
 {
-    protected $table;
     public $data = [];
-    protected $map;
+
+    protected $rules = [
+        'user_id' => [
+            'Type' => 'int',
+            'Length' => 11,
+        ],
+        'content' => [
+            'Length' => 255,
+        ],
+        'category_id' => [
+            'Type' => 'int',
+            'Length' => 11,
+        ],
+    ];
 
     public function __construct()
     {
         $this->db = Db::getConnection();
+        ActiveRecord::$className = __CLASS__;
     }
 
     public function getData(string $key = '')
     {
-        if($key !== ''){
-            foreach($this->data as $res => $val){
-                return $val[$key];
-            }
-        } else {
-            return $this->data;
-        }
+        return $this->data[$key];
     }
 
     public function setData($user_id, $content, $category_id)
@@ -33,15 +40,8 @@ class Post extends ActiveRecord
 
         $sql = $this->generate('INSERT', $this->getTable(), $this->getColumns($this->getTable()), $params);
 
-        if($this->validate($this->generate('SELECT', $this->getTable(), $this->getColumns($this->getTable())), $params))
-        {
-            $result = $this->save($sql, $params);
-            return $result;
-        } else {
-            return false;
-        }
-
-
+        $result = $this->save($sql, $params);
+        return $result;
     }
 
     public function getUser()

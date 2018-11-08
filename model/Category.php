@@ -2,35 +2,37 @@
 
 class Category extends ActiveRecord
 {
-    protected $table;
     public $data = [];
-    protected $map;
+    protected $rules = [
+        'cat_name' => [
+            'Type' => 'varchar',
+            'Max-length' => 50,
+            'Min-length' => 5,
+        ],
+    ];
 
     public function __construct()
     {
         $this->db = Db::getConnection();
-        $this->table = $this->getTable();
-        $this->map = $this->getColumns($this->table);
+        ActiveRecord::$className = __CLASS__;
     }
 
-    public function setData($categoryName)
+    public function addData($categoryName)
     {
         $params = [
             'cat_name' => $categoryName,
-            'status' => 0,
         ];
-        $sql = $this->generate('INSERT',$this->table,$this->map,$params);
-		return $this->save($sql, $params);
+
+        $this->data = $params;
+        $errors = $this->validate($this->data, $this->rules);
+        echo '<hr><p>Ошибки :</p>';
+        var_dump($errors);
+        //$sql = $this->generate('INSERT',$this->getTable(),$this->getColumns($this->getTable()),$params);
+		//return $this->save($sql, $params);
     }
 
     public function getData(string $key = '')
     {
-        if($key !== ''){
-            foreach($this->data as $res => $val){
-                return $val[$key];
-            }
-        } else {
-            return $this->data;
-        }
+        return $this->data[$key];
     }
 }

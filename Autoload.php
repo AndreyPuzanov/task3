@@ -12,6 +12,7 @@ spl_autoload_register( function($class_name){
         case 'Category' :
         case 'Post' :
         case 'User' :
+        case 'Validation' :
             require_once 'model/' . $class_name . '.php';
             break;
     }

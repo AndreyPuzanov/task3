@@ -18,10 +18,11 @@ class Router
             $user = $newUser->setData($_POST['name'], $_POST['email']);
         } elseif ($this->uri == 'add-category'){
             $newCategory = new Category();
-            $category = $newCategory->setData($_POST['category']);
+            $category = $newCategory->addData($_POST['category']);
             require_once 'view/Category/category.php';
         } elseif ($this->uri == 'posts'){
             $post = new Post();
+            $posts = $post::getAll();
             require_once 'view/Post/posts.php';
         } elseif ($this->uri == 'add-post'){
             require_once 'view/Post/add_post.php';

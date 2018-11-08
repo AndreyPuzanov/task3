@@ -2,15 +2,12 @@
 
 class User extends ActiveRecord
 {
-    protected $table;
     public $data = [];
-    protected $map;
 
     public function __construct()
     {
         $this->db = Db::getConnection();
-        $this->table = $this->getTable();
-        $this->map = $this->getColumns($this->table);
+        ActiveRecord::$className = __CLASS__;
     }
     
     public function setData($userName , $email)
@@ -21,18 +18,12 @@ class User extends ActiveRecord
             'status' => 0,
         ];
 
-        $sql = $this->generate('INSERT',$this->table,$this->map,$params);
-        return $this->save($sql, $params, $this->table);
+        $sql = $this->generate('INSERT',$this->getTable(),$this->getColumns($this->getTable()),$params);
+        return $this->save($sql, $params, $this->getTable());
     }
 
     public function getData(string $key = '')
     {
-        if($key !== ''){
-            foreach($this->data as $res => $val){
-                return $val[$key];
-            }
-        } else {
-            return $this->data;
-        }
+        return $this->data[$key];
     }
 }

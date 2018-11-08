@@ -4,6 +4,8 @@ abstract class ActiveRecord implements Model
 {
     public $db;
 
+    static public $className = '';
+
     public function getTable()
     {
         return get_class($this);
@@ -30,17 +32,28 @@ abstract class ActiveRecord implements Model
         return $stmt;
     }
 
-//    public static function getAll()
-//    {
-//        $this->data = $this->query($this->generate('SELECT', $this->getTable(), $this->getColumns($this->getTable())));
-//    }
+    static public function getAll()
+    {
+        $db = Db::getConnection();
+
+        $result = array();
+        $data = $db->query('SELECT * FROM ' . self::$className)->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach( $data as $row )
+        {
+            $class = new self::$className;
+            $class->load($row['id']);
+            $result[] = $class;
+        }
+        return $result;
+    }
 
     public function load(int $id)
     {
         $params = [
             'id' => $id,
         ];
-        $this->data = $this->query($this->generate('SELECT', $this->getTable(), $this->getColumns($this->getTable()), $params))->fetchAll(PDO::FETCH_ASSOC);
+        $this->data = $this->query($this->generate('SELECT', $this->getTable(), $this->getColumns($this->getTable()), $params))->fetch(PDO::FETCH_ASSOC);
     }
 
     public function save($sql, $params = [])
@@ -57,19 +70,10 @@ abstract class ActiveRecord implements Model
         return $stmt;
     }
 
-    public function validate($sql,$params = [])
+    public function validate()
     {
-        $res = $this->db->prepare($sql);
-		if (!empty($params)) {
-			foreach ($params as $key => $val) {
-				$res->bindValue(':'.$key, $val);
-            }
-        }
-        if($res->execute()){
-            return true;
-        } else {
-            return false;
-        }
+        $f = new Validation();
+        $f->sss();
     }
 
 
