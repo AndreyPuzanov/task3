@@ -72,8 +72,7 @@ abstract class ActiveRecord implements Model
 
     public function validate()
     {
-        $f = new Validation();
-        $f->sss();
+        return new Validation($this->rules,$this->data);
     }
 
 

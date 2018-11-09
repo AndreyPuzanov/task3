@@ -5,9 +5,14 @@ class Category extends ActiveRecord
     public $data = [];
     protected $rules = [
         'cat_name' => [
-            'Type' => 'varchar',
-            'Max-length' => 50,
-            'Min-length' => 5,
+            'type' => 'varchar',
+            'maxLength' => 15,
+            'minLength' => 5,
+        ],
+        'email' => [
+            'type' => 'email',
+            'maxLength' => 30,
+            'minLength' => 10,
         ],
     ];
 
@@ -21,12 +26,14 @@ class Category extends ActiveRecord
     {
         $params = [
             'cat_name' => $categoryName,
+            'email' => 'aavcxv@dasd.sa',
         ];
 
         $this->data = $params;
-        $errors = $this->validate($this->data, $this->rules);
+        $valid = $this->validate($this->data, $this->rules);
         echo '<hr><p>Ошибки :</p>';
-        var_dump($errors);
+        echo '<pre>';
+        print_r($valid->errors);
         //$sql = $this->generate('INSERT',$this->getTable(),$this->getColumns($this->getTable()),$params);
 		//return $this->save($sql, $params);
     }

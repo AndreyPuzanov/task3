@@ -10,7 +10,7 @@
     <a href="/">back</a>
     <hr>
     <form action="/add-category" method="POST">
-        <input type="text" name="category" placeholder="category name" required>
+        <input type="text" name="category" placeholder="category name">
         <input type="submit" name="btn-category" value="Submit">  
     </form>
 </body>
