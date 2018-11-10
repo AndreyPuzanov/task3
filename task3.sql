@@ -1,3 +1,7 @@
+CREATE DATABASE task3;
+
+USE task3;
+
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
