@@ -13,15 +13,15 @@ class Router
         if($this->uri == ''){
             require_once ROOT.'/view/default.php';
         } elseif ($this->uri == 'add-user'){
-            require_once 'view/User/user.php';
             $newUser = new User();
             if(!empty($_POST)){
-                $user = $newUser->setData($_POST['name'], $_POST['email']);
+                $user = $newUser->addData($_POST['name'], $_POST['email']);
             }
+            require_once 'view/User/user.php';
         } elseif ($this->uri == 'add-category'){
             $newCategory = new Category();
             if(!empty($_POST)){
-                $category = $newCategory->addData($_POST['category']);
+                $category = $newCategory->addData($_POST['category'], $_POST['email'], $_POST['login']);
             }
             require_once 'view/Category/category.php';
         } elseif ($this->uri == 'posts'){

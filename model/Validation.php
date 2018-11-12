@@ -4,6 +4,7 @@ class Validation
 {
     private $rules = [];
     private $data = [];
+    public $valid_data = [];
     public $errors = [];
 
     public function __construct(array $rules, array $data)
@@ -11,23 +12,9 @@ class Validation
         $this->data = $data;
         $this->rules = $rules;
 
-        $this->empty();
-        //$this->length();
-        $this->final();
-
-        echo '<pre>';
-        print_r($this->data);
-    }
-
-    public function empty()
-    {
-        foreach ($this->data as $key => $value){
-            if(empty($value)){
-                $this->errors[] = array($key => ' поле пустое!');
-            }
-        }
-
-        return $this->errors;
+        $this->length();
+        $this->isInt();
+        $this->isEmail();
     }
 
     public function length()
@@ -35,10 +22,18 @@ class Validation
         foreach ($this->rules as $rule => $val){
             foreach ($this->data as $key => $value){
                 if($rule == $key){
-                    if($val['maxLength'] < strlen($value)){
-                        $this->errors[] = array($key => ' большое кол-во символов!');
-                    } elseif (($val['minLength'] > strlen($value))){
-                        $this->errors[] = array($key => ' вы что то написали ?');
+                    if ($value == '') {
+                        $this->errors[$key] = $key . ' поле пустое !';
+                    } elseif($val['maxLength'] < strlen($value)){
+                        $this->errors[$key] = $key . ' большое кол-во символов ?';
+                    } elseif ($val['minLength'] > strlen($value)){
+                        $this->errors[$key] = $key . ' вы что то написали ?';
+                    } else {
+                        if($val['type'] == 'email'){
+                            continue;
+                        } else {
+                            $this->valid_data[$key] = $value;
+                        }
                     }
                 }
             }
@@ -47,20 +42,46 @@ class Validation
         return $this->errors;
     }
 
-    public function final()
+    public function isInt()
     {
-//        foreach ($this->rules as $rule => $val){
-//            foreach ($this->data as $key => $value){
-//                if($rule == $key){
-//                    if($val['type'] == 'int'){
-//                        if(!is_int($value)){
-//                            $this->errors[] = array($key => ' недопустимые символы!');
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return $this->errors;
+        foreach ($this->rules as $rule => $val){
+            foreach ($this->data as $key => $value){
+                if($rule == $key){
+                    if($val['type'] == 'int'){
+                        if(!is_int($value)){
+                            $this->errors[$key] = $key . ' недопустимые символы !';
+                        } else {
+                            $this->valid_data[$key] = $value;
+                        }
+                    }
+                }
+            }
+        }
+        return $this->errors;
     }
+
+    public function isEmail()
+    {
+        foreach ($this->rules as $rule => $val){
+            foreach ($this->data as $key => $value){
+                if($rule == $key){
+                    if($val['type'] == 'email'){
+                        if(!empty($this->errors['email'])){
+                            continue;
+                        } else {
+                            if(filter_var($value, FILTER_VALIDATE_EMAIL)){
+                                $this->valid_data[$key] = $value;
+                            } else {
+                                $this->errors[$key] = $key . ' неверно введен email !';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $this->errors;
+    }
+    
+    
 
 }

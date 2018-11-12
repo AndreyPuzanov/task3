@@ -11,6 +11,8 @@
     <hr>
     <form action="/add-category" method="POST">
         <input type="text" name="category" placeholder="category name">
+        <input type="text" name="email" placeholder="category email">
+        <input type="text" name="login" placeholder="category login">
         <input type="submit" name="btn-category" value="Submit">  
     </form>
 </body>

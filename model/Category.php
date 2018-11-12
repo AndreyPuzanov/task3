@@ -11,8 +11,18 @@ class Category extends ActiveRecord
         ],
         'email' => [
             'type' => 'email',
-            'maxLength' => 30,
-            'minLength' => 10,
+            'maxLength' => 29,
+            'minLength' => 5,
+        ],
+        'login' => [
+            'type' => 'varchar',
+            'maxLength' => 15,
+            'minLength' => 5,
+        ],
+        'id' => [
+            'type' => 'int',
+            'maxLength' => 10,
+            'minLength' => 1,
         ],
     ];
 
@@ -22,11 +32,13 @@ class Category extends ActiveRecord
         ActiveRecord::$className = __CLASS__;
     }
 
-    public function addData($categoryName)
+    public function addData($categoryName, $email, $login)
     {
         $params = [
             'cat_name' => $categoryName,
-            'email' => 'aavcxv@dasd.sa',
+            'email' => $email,
+            'login' => $login,
+            'id' => 'aaaa',
         ];
 
         $this->data = $params;
@@ -34,6 +46,9 @@ class Category extends ActiveRecord
         echo '<hr><p>Ошибки :</p>';
         echo '<pre>';
         print_r($valid->errors);
+        echo '<hr><p>valid data :</p>';
+        print_r($valid->valid_data);
+        echo '</pre>';
         //$sql = $this->generate('INSERT',$this->getTable(),$this->getColumns($this->getTable()),$params);
 		//return $this->save($sql, $params);
     }
